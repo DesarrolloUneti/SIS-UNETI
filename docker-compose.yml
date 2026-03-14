@@ -1,0 +1,24 @@
+services:
+  # Base de Datos Soberana
+  db:
+    image: postgres:18-alpine
+    container_name: sis_uneti_db
+    restart: always
+    environment:
+      POSTGRES_DB: data_soberana
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Mensajería para Microservicios
+  redis:
+    image: redis:7-alpine
+    container_name: sis_uneti_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
